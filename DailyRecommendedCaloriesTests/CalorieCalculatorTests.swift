@@ -7,7 +7,10 @@ class CalorieCalculatorTests: XCTestCase {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let birthdate = dateFormatter.date(from: "1990-01-01")!
         let age = CalorieCalculator.age(birthdate: birthdate)
-        XCTAssertEqual(age, 33) // TODO: This hardcoded 33 works now but not in 1 year
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let differenceOfYears = calendar.dateComponents([.year], from: birthdate, to: currentDate).year!
+        XCTAssertEqual(age, differenceOfYears)
     }
     
     func testBMRCalculation() {
