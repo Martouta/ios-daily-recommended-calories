@@ -7,9 +7,9 @@ enum Sex: String, CaseIterable {
     var displayText: String {
         switch self {
         case .male:
-            return "Male"
+            return "male"
         case .female:
-            return "Female"
+            return "female"
         }
     }
 }
@@ -22,11 +22,11 @@ enum Goal: String, CaseIterable {
     var displayText: String {
         switch self {
         case .lose:
-            return "Lose"
+            return "lose"
         case .maintain:
-            return "Maintain"
+            return "maintain"
         case .gain:
-            return "Gain"
+            return "gain"
         }
     }
 }
@@ -41,15 +41,15 @@ enum ActivityLevel: String, CaseIterable {
     var displayText: String {
         switch self {
         case .sedentary:
-            return "Sedentary"
+            return "sedentary"
         case .lightlyActive:
-            return "Lightly Active"
+            return "lightly_active"
         case .moderatelyActive:
-            return "Moderately Active"
+            return "moderately_active"
         case .veryActive:
-            return "Very Active"
+            return "very_active"
         case .extraActive:
-            return "Extra Active"
+            return "extra_active"
         }
     }
 }
@@ -94,11 +94,11 @@ struct CalorieCalculatorView: View {
                     }
                     
                     HStack {
-                        TextField("Height (m)", text: $height)
+                        TextField("Height (cm)", text: $height)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        Text("m")
+                        Text("cm")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
@@ -137,15 +137,23 @@ struct CalorieCalculatorView: View {
     
     func calculateCalories() {
         let sex = self.sex.rawValue
-        let weight = Double(self.weight) ?? 0
-        let height = Double(self.height) ?? 0
+        // let weight = Double(self.weight) ?? 0
+        // let height = Double(self.height) ?? 0
+        let weight = 70.0
+        let height = 180.0
         let goal = self.goal.rawValue
         let activityLevel = self.activityLevel.rawValue
         
-        let personAge = CalorieCalculator.age(birthdate: birthdate)
+        // let personAge = CalorieCalculator.age(birthdate: birthdate)
+        let personAge = 33
+        print("👵 personAge: \(personAge)")
+        print("Sex: \(sex) - Weight: \(weight) - Height: \(height)")
         let personBMR = CalorieCalculator.bmr(age: personAge, sex: sex, weight: weight, height: height)
+        print("👵 personBMR: \(personBMR)")
         let recommendedCalories = CalorieCalculator.calculateCalories(bmr: personBMR, goal: goal, activityLevel: activityLevel)
         self.recommendedCalories = recommendedCalories
+        print("🍰 Recommended Calories: \(recommendedCalories)")
+        print("🥮 Recommended Calories: \(String(describing: self.recommendedCalories))")
     }
 }
 
