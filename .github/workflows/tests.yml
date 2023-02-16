@@ -1,0 +1,15 @@
+name: iOS Test
+
+on: push
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        xcodebuild -project DailyRecommendedCalories.xcodeproj -scheme DailyRecommendedCalories -destination 'platform=iOS Simulator,name=iPhone 12' build
+    - name: Test
+      run: |
+        xcodebuild -project DailyRecommendedCalories.xcodeproj -scheme DailyRecommendedCalories -destination 'platform=iOS Simulator,name=iPhone 12' -verbose test
