@@ -16,6 +16,8 @@
 		C1AD716E299D8C020022063C /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD716D299D8C020022063C /* CalorieCalculator.swift */; };
 		C1AD7170299D90830022063C /* CalorieCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD716F299D90830022063C /* CalorieCalculatorTests.swift */; };
 		C1AD7172299D92B10022063C /* CalorieCalculatorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD7171299D92B10022063C /* CalorieCalculatorViewTests.swift */; };
+		C1AD7173299DB9340022063C /* CalorieCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD716B299D8A110022063C /* CalorieCalculatorView.swift */; };
+		C1AD7174299DB94E0022063C /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD716D299D8C020022063C /* CalorieCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1AD7174299DB94E0022063C /* CalorieCalculator.swift in Sources */,
+				C1AD7173299DB9340022063C /* CalorieCalculatorView.swift in Sources */,
 				C1AD715F299D89190022063C /* DailyRecommendedCaloriesUITestsLaunchTests.swift in Sources */,
 				C1AD7172299D92B10022063C /* CalorieCalculatorViewTests.swift in Sources */,
 			);
