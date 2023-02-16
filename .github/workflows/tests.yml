@@ -12,4 +12,4 @@ jobs:
         xcodebuild -project DailyRecommendedCalories.xcodeproj -scheme DailyRecommendedCalories -destination 'platform=iOS Simulator,name=iPhone 12' build
     - name: Test
       run: |
-        xcodebuild -project DailyRecommendedCalories.xcodeproj -scheme DailyRecommendedCalories -destination 'platform=iOS Simulator,name=iPhone 12' test
+        xcodebuild -project DailyRecommendedCalories.xcodeproj -scheme DailyRecommendedCalories -destination 'platform=iOS Simulator,name=iPhone 12' -verbose test
