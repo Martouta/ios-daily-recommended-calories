@@ -2,24 +2,21 @@ import XCTest
 @testable import DailyRecommendedCalories
 
 class CalorieCalculatorViewTests: XCTestCase {
-    var view: CalorieCalculatorView!
-
-    override func setUp() {
-        view = CalorieCalculatorView()
-    }
-
     func testCalculateCalories() {
-        view.calculateCalories()
-        XCTAssertNil(view.recommendedCalories)
-
-        view.birthdate = Date()
-        view.sex = .male
-        view.weight = "70"
-        view.height = "1.8"
-        view.goal = .maintain
-        view.activityLevel = .sedentary
-        view.calculateCalories()
-
-        XCTAssertEqual(view.recommendedCalories, 1964)
+        let app = XCUIApplication()
+        app.launch()
+        
+        let weightTextField = app.textFields["Weight (kg)"]
+        weightTextField.tap()
+        weightTextField.typeText("60")
+        
+        let heightTextField = app.textFields["Height (cm)"]
+        heightTextField.tap()
+        heightTextField.typeText("170")
+        
+        app.buttons["Calculate"].tap()
+        
+        let recommendedCaloriesLabel = app.staticTexts.matching(identifier: "recommendedCaloriesLabel").firstMatch
+        XCTAssertEqual(recommendedCaloriesLabel.label, "Recommended daily calorie intake: 2,001 calories")
     }
 }
