@@ -15,7 +15,7 @@ class CalorieCalculatorTests: XCTestCase {
     
     func testBMRCalculation() {
         let age = 33
-        let sex = "male"
+        let sex: Sex = .male
         let weight = 70.0
         let height = 180.0
         let bmr = CalorieCalculator.bmr(age: age, sex: sex, weight: weight, height: height)
@@ -24,8 +24,8 @@ class CalorieCalculatorTests: XCTestCase {
     
     func testCalorieCalculation() {
         let bmr = 1705.0
-        let goal = "maintain"
-        let activityLevel = "sedentary"
+        let goal: Goal = .maintain
+        let activityLevel: ActivityLevel = .sedentary
         let calories = CalorieCalculator.calculateCalories(bmr: bmr, goal: goal, activityLevel: activityLevel)
         XCTAssertEqual(calories, 2046)
     }
