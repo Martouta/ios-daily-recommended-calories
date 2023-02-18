@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1164C6729A10AB5005F89D3 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = C1164C6629A10AB5005F89D3 /* ViewInspector */; };
 		C1AD7142299D89170022063C /* DailyRecommendedCaloriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD7141299D89170022063C /* DailyRecommendedCaloriesApp.swift */; };
 		C1AD7144299D89170022063C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD7143299D89170022063C /* ContentView.swift */; };
 		C1AD7146299D89190022063C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1AD7145299D89190022063C /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1164C6729A10AB5005F89D3 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +189,9 @@
 				C1AD715A299D89190022063C /* PBXTargetDependency */,
 			);
 			name = DailyRecommendedCaloriesUITests;
+			packageProductDependencies = (
+				C1164C6629A10AB5005F89D3 /* ViewInspector */,
+			);
 			productName = DailyRecommendedCaloriesUITests;
 			productReference = C1AD7158299D89190022063C /* DailyRecommendedCaloriesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -223,6 +228,9 @@
 				Base,
 			);
 			mainGroup = C1AD7135299D89170022063C;
+			packageReferences = (
+				C1164C6529A10AB5005F89D3 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = C1AD713F299D89170022063C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -595,6 +603,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1164C6529A10AB5005F89D3 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1164C6629A10AB5005F89D3 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1164C6529A10AB5005F89D3 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C1AD7136299D89170022063C /* Project object */;
 }

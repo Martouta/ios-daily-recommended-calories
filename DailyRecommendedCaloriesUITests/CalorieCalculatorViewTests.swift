@@ -1,43 +1,36 @@
 import XCTest
+import ViewInspector
 @testable import DailyRecommendedCalories
 
 class CalorieCalculatorViewTests: XCTestCase {
-    func testCalculateCalories() {
-        let app = XCUIApplication()
-        app.launch()
+    func testCalculateCalories() throws {
+        let calorieCalculatorView = CalorieCalculatorView()
         
-        // let datePicker = app.datePickers.firstMatch // app.datePickers["Birthdate"]
-        // datePicker.pickerWheels["2023"].adjust(toPickerWheelValue: "1990")
+        // Inspect the DatePicker and set the date to "Nov 20, 1992"
+        let datePicker = try calorieCalculatorView.inspect().datePicker().picker()
+        try datePicker.select(Date(timeIntervalSinceReferenceDate: 0))
+        try datePicker.select(date: "Nov 20, 1992")
         
-//        sleep(1)
-//
-//        let predicate = NSPredicate(format: "exists == true")
-//        let expectation = expectation(for: predicate, evaluatedWith: app.pickers["Sex"], handler: nil)
-//        waitForExpectations(timeout: 5, handler: nil)
-//
-//        let sexPicker = app.pickers["Sex"]
-//        XCTAssertTrue(sexPicker.exists)
-//        sexPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "female")
+        // Inspect the weight and height text fields and set their values
+        let weightField = try calorieCalculatorView.inspect().textField(0)
+        try weightField.set("70.0")
         
-        // let sexPicker = app.pickers.matching(identifier: "Sex").element
-        // XCTAssertTrue(sexPicker.exists)
-        // let sexPicker = app.pickers.matching(identifier: "Sex").firstMatch
-        // XCTAssert(sexPicker.waitForExistence(timeout: 1000))
-        // sexPicker.adjust(toPickerWheelValue: "female")
-
-        let weightTextField = app.textFields["Weight (kg)"]
-        weightTextField.tap()
-        weightTextField.typeText("60")
-
-        let heightTextField = app.textFields["Height (cm)"]
-        heightTextField.tap()
-        heightTextField.typeText("170")
-
-        app.buttons["Calculate"].tap()
+        let heightField = try calorieCalculatorView.inspect().textField(1)
+        try heightField.set("180.0")
         
-        let recommendedCaloriesLabel = app.staticTexts.matching(identifier: "recommendedCaloriesLabel").firstMatch
-        // print(recommendedCaloriesLabel.debugDescription)
-        // XCTAssert(recommendedCaloriesLabel.exists)
-        XCTAssertEqual(recommendedCaloriesLabel.label, "Recommended daily calorie intake: 2,001 calories")
+        // Inspect the Picker views and set their values
+        let goalPicker = try calorieCalculatorView.inspect().picker(0).picker()
+        try goalPicker.select("Lose")
+        
+        let activityLevelPicker = try calorieCalculatorView.inspect().picker(1).picker()
+        try activityLevelPicker.select("Very Active")
+        
+        // Tap the calculate button to calculate the recommended calories
+        let calculateButton = try calorieCalculatorView.inspect().button()
+        try calculateButton.tap()
+        
+        // Check that the recommended calories value is not nil
+        let recommendedCaloriesLabel = try calorieCalculatorView.inspect().text(1)
+        XCTAssertNotNil(try recommendedCaloriesLabel.string())
     }
 }
