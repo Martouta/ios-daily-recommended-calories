@@ -9,47 +9,11 @@ struct CalorieCalculatorView: View {
     @State private var activityLevel = ActivityLevel.sedentary
     @State private var recommendedCalories: Int? = nil
     
-    let weightFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 1
-        return formatter
-    }()
-    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Personal Information")) {
-                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
-                        .accessibilityIdentifier("Birthdate")
-                    Picker("Sex", selection: $sex) {
-                        ForEach(Sex.allCases, id: \.self) { sex in
-                            Text(sex.rawValue).accessibilityIdentifier("Sex")
-                        }
-                    }
-                }
-                
-                Section(header: Text("Body Information")) {
-                    HStack {
-                        TextField("Weight (kg)", text: $weight)
-                            .keyboardType(.decimalPad)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        Text("kg")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                    
-                    HStack {
-                        TextField("Height (cm)", text: $height)
-                            .keyboardType(.decimalPad)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        Text("cm")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                }
+                PersonalInformationView(birthdate: $birthdate, sex: $sex)
+                BodyInformationView(weight: $weight, height: $height)
                 
                 Section(header: Text("Calorie Calculation")) {
                     Picker("Goal", selection: $goal) {
@@ -94,6 +58,59 @@ struct CalorieCalculatorView: View {
         let personBMR = CalorieCalculator.bmr(age: personAge, sex: sex, weight: weight, height: height)
         let recommendedCalories = CalorieCalculator.calculateCalories(bmr: personBMR, goal: goal, activityLevel: activityLevel)
         self.recommendedCalories = recommendedCalories
+    }
+}
+
+struct PersonalInformationView: View {
+    @Binding var birthdate: Date
+    @Binding var sex: Sex
+    
+    var body: some View {
+        Section(header: Text("Personal Information")) {
+            DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+                .accessibilityIdentifier("Birthdate")
+            Picker("Sex", selection: $sex) {
+                ForEach(Sex.allCases, id: \.self) { sex in
+                    Text(sex.rawValue).accessibilityIdentifier("Sex")
+                }
+            }
+        }
+    }
+}
+
+struct BodyInformationView: View {
+    @Binding var weight: String
+    @Binding var height: String
+    
+    let weightFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+    
+    var body: some View {
+        Section(header: Text("Body Information")) {
+            HStack {
+                TextField("Weight (kg)", text: $weight)
+                    .keyboardType(.decimalPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("kg")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+            HStack {
+                TextField("Height (cm)", text: $height)
+                    .keyboardType(.decimalPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("cm")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+        }
     }
 }
 
