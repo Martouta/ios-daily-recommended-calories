@@ -1,5 +1,5 @@
 import XCTest
-@testable import DailyRecommendedCalories
+import DailyRecommendedCalories
 
 class CalorieCalculatorTests: XCTestCase {
     func testAgeCalculation() {
